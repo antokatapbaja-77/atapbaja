@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atap Baja - Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+  <!-- ========== LOGIN SCREEN ========== -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-box">
+      <h1>Atap Baja</h1>
+      <p>Masukkan password untuk mengakses panel admin.</p>
+      <div id="login-error" class="error-msg">Password salah. Silakan coba lagi.</div>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="Masukkan password" autofocus required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Masuk</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========== ADMIN DASHBOARD ========== -->
+  <div id="admin-dashboard" class="admin-dashboard">
+
+    <!-- Header -->
+    <header class="admin-header">
+      <h1>
+        <span class="brand-mark">AB</span>
+        Atap Baja - Admin
+      </h1>
+      <div class="admin-header-actions">
+        <button id="btn-preview" class="btn-preview">Preview Lokal</button>
+        <button id="btn-push" class="btn-push">Push ke GitHub</button>
+        <button id="btn-reset" style="color:#e57373">Reset</button>
+        <button id="btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="tab-text">Teks</button>
+      <button class="tab-btn" data-tab="tab-products">Produk</button>
+      <button class="tab-btn" data-tab="tab-images">Gambar</button>
+      <button class="tab-btn" data-tab="tab-json">JSON Editor</button>
+      <button class="tab-btn" data-tab="tab-settings">Pengaturan</button>
+    </nav>
+
+    <!-- Tab: Teks -->
+    <div id="tab-text" class="tab-content active">
+      <div id="text-editor-content"></div>
+    </div>
+
+    <!-- Tab: Produk -->
+    <div id="tab-products" class="tab-content">
+      <div class="section-card">
+        <h2>Struktur Produk</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px">
+          Klik nama item untuk membuka/menutup children. Gunakan tombol Edit atau Hapus untuk mengubah.
+        </p>
+        <div id="product-tree" class="product-tree"></div>
+      </div>
+    </div>
+
+    <!-- Tab: Gambar -->
+    <div id="tab-images" class="tab-content">
+      <div class="section-card">
+        <h2>Gambar Produk</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px">
+          Upload gambar untuk setiap produk. Format: JPG, PNG, WebP. Maksimal 5MB.
+        </p>
+        <div id="image-editor-content"></div>
+      </div>
+    </div>
+
+    <!-- Tab: JSON Editor -->
+    <div id="tab-json" class="tab-content">
+      <div class="section-card">
+        <h2>JSON Editor</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px">
+          Edit data secara langsung dalam format JSON. Hati-hati saat mengedit!
+        </p>
+        <textarea id="json-editor" class="json-editor"></textarea>
+        <div class="btn-group">
+          <button id="json-save-btn" class="btn btn-primary">Simpan JSON</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Pengaturan -->
+    <div id="tab-settings" class="tab-content">
+      <div class="section-card">
+        <h2>GitHub Token</h2>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:16px">
+          Token digunakan untuk push perubahan ke GitHub. Token disimpan di browser ini saja (localStorage).
+        </p>
+        <div class="form-group">
+          <label>GitHub Personal Access Token</label>
+          <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx">
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <button id="save-token-btn" class="btn btn-primary">Simpan Token</button>
+          <span id="token-status" style="font-size:13px;color:var(--muted)">Belum ada token</span>
+        </div>
+        <div class="hint" style="margin-top:20px">
+          <strong>Cara mendapatkan token:</strong>
+          <ol style="margin:8px 0 0 16px;font-size:13px;line-height:1.8">
+            <li>Buka <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a></li>
+            <li>Klik <strong>"Generate new token (classic)"</strong></li>
+            <li>Beri nama: <code>admin-atapbaja</code></li>
+            <li>Centang scope: <strong>repo</strong></li>
+            <li>Klik Generate, lalu copy token (ghp_xxxxx)</li>
+            <li>Tempel token di atas, klik Simpan</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h2>Data Management</h2>
+        <div class="btn-group">
+          <button id="btn-export" class="btn">Export data.json</button>
+          <button id="btn-import" class="btn">Import data.json</button>
+          <input type="file" id="import-file" accept=".json" style="display:none">
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+      <span id="status-msg" class="status-msg">Siap</span>
+      <span style="opacity:0.5;font-size:12px">Atap Baja Admin Panel</span>
+    </div>
+  </div>
+
+  <!-- ========== MODAL ========== -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Edit</h3>
+        <button id="modal-close" class="modal-close">x</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div class="modal-footer">
+        <button id="modal-cancel" class="btn">Batal</button>
+        <button id="modal-save" class="btn btn-primary">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin-auth.js"></script>
+</body>
+</html>

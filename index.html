@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Katalog material atap, besi, dan chemical building untuk proyek konstruksi.">
+  <title>Atap Baja | Material Konstruksi untuk Proyek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .product-thumb { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; }
+    .category-thumb { width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 10px; }
+    .sub-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+    .product-detail-img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 16px; }
+    .product-card { display: flex; flex-direction: column; align-items: stretch; text-align: left; }
+    .subcategory { display: flex; align-items: center; gap: 14px; text-align: left; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#beranda" aria-label="Atap Baja, ke beranda"><span class="brand-mark">AB</span><span>Atap<span>Baja</span></span></a>
+    <button class="menu-toggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a href="#katalog">Katalog</a><a href="#keunggulan">Keunggulan</a><a href="#kontak">Kontak</a>
+      <a class="nav-cta" href="https://wa.me/6282230008555" target="_blank" rel="noopener">WhatsApp Kami</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-copy">
+        <p class="eyebrow">MATERIAL KONSTRUKSI TERPERCAYA</p>
+        <h1>Temukan material tepat untuk <em>proyek Anda.</em></h1>
+        <p class="lead">Katalog atap, besi, dan chemical building dengan informasi teknis jelas untuk kebutuhan rumah hingga proyek skala besar.</p>
+        <div class="hero-actions"><a class="button primary" href="#katalog">Jelajahi Katalog <span>→</span></a><a class="button text-button" href="https://wa.me/6282230008555" target="_blank" rel="noopener">Konsultasi Proyek</a></div>
+      </div>
+      <div class="hero-panel">
+        <p>SUPPLIER MATERIAL PROYEK</p><strong>3</strong><span>Kategori produk utama</span>
+        <div class="hero-lines"></div>
+      </div>
+    </section>
+
+    <section class="value-strip" id="keunggulan">
+      <div><b>01</b><span><strong>Spesifikasi transparan</strong>Data produk dan ukuran yang mudah dipahami.</span></div>
+      <div><b>02</b><span><strong>Siap untuk proyek</strong>Konsultasi material sesuai kebutuhan aplikasi.</span></div>
+      <div><b>03</b><span><strong>Respon cepat</strong>Harga dan ketersediaan melalui WhatsApp.</span></div>
+    </section>
+
+    <section class="catalog section" id="katalog">
+      <div class="section-heading"><div><p class="eyebrow">KATALOG PRODUK</p><h2>Material untuk setiap tahap pembangunan.</h2></div><p>Pilih kategori untuk melihat pilihan produk, varian, dan spesifikasi teknis.</p></div>
+      <div class="search-wrap"><label for="search">Cari material</label><input id="search" type="search" placeholder="Contoh: spandek pasir, WF 200, anti bocor" autocomplete="off"><span class="search-icon">⌕</span><div id="search-results" class="search-results" hidden></div></div>
+      <div id="category-cards" class="category-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="catalog-detail" class="catalog-detail" hidden>
+      <div class="section detail-shell"><button id="back-button" class="back-button">← Kembali ke kategori</button><div id="breadcrumbs" class="breadcrumbs"></div><div id="detail-content"></div></div>
+    </section>
+
+    <section class="project-cta" id="kontak">
+      <div><p class="eyebrow">BUTUH BANTUAN MEMILIH?</p><h2>Ceritakan kebutuhan proyek Anda.</h2><p>Tim kami siap membantu menemukan material yang sesuai spesifikasi dan anggaran proyek.</p></div>
+      <a class="button light" href="https://wa.me/6282230008555" target="_blank" rel="noopener">Hubungi via WhatsApp <span>↗</span></a>
+    </section>
+  </main>
+  <footer><a class="brand" href="#beranda"><span class="brand-mark">AB</span><span>Atap<span>Baja</span></span></a><p>Material konstruksi untuk pekerjaan yang kokoh.</p><a href="tel:+6282230008555">0822-3000-8555</a><small>© <span id="year"></span> Atap Baja. Semua hak dilindungi.</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
